@@ -11,3 +11,8 @@ public class DemoApplication {
     }
 
 }
+
+
+//  https://www.youtube.com/watch?v=9SGDpanrc8U&t=1103s
+//  56:00
+//  http://localhost:8080/api/v1/student
