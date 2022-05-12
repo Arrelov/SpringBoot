@@ -1,5 +1,6 @@
 package com.example.demo.student;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,25 +23,30 @@ public class StudentController {
         return studentService.getStudents();
     }
 
+    @GetMapping(path = "{studentId}")
+    public Student getStudentById(@PathVariable("studentId") Long studentId) {
+        return studentService.getStudentById(studentId);
+    }
+
     @PostMapping
-    public void registerNewStudent(@RequestBody Student student) {
+    public Student registerNewStudent(@RequestBody Student student) {
         studentService.addNewStudent(student);
+        return student;
     }
 
     @DeleteMapping(path = "{studentId}")
-    public void deleteStudent(@PathVariable("studentId") Long studentId) {
+    public String deleteStudent(@PathVariable("studentId") Long studentId) {
         studentService.deleteStudent(studentId);
+        return "delete student with id=" + studentId;
     }
 
     @PutMapping(path = "{studentId}")
-    public void updateStudent(
+    public Student updateStudent(
             @PathVariable("studentId") Long studentId,
             @RequestParam(required = false) LocalDate dob,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email) {
-        studentService.updateStudent(studentId, dob, name, email);
+        return studentService.updateStudent(studentId, dob, name, email);
     }
-
-
 }
 
