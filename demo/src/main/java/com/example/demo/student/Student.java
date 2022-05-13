@@ -1,11 +1,14 @@
 package com.example.demo.student;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 
 @Entity
 @Table
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 public class Student {
     @Id
     @SequenceGenerator(
